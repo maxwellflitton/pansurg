@@ -28,6 +28,6 @@ Right now the paper isn't it's own object but a dict which contains the followin
 - ```metadata```: contains data about the paper such as the journal title, dates, and authors 
 - ```abstract```: abstract of the paper 
 - ```body_text```: text of the paper 
-- ```bib_enteries```: bibliography
-- ```ref_enteries```: references
+- ```bib_entries```: bibliography
+- ```ref_entries```: references
 - ```back_matter```: more meta data like funding, conflict of interest statements etc
