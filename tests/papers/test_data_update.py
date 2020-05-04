@@ -10,7 +10,7 @@ class TestDataUpdate(TestCase):
         test = DataUpdate()
 
         self.assertEqual(str, type(test._url))
-        self.assertEqual([], test.data)
+        self.assertEqual(["fail"], test.data)
 
     @patch("pansurg.papers.data_update.tarfile")
     @patch("pansurg.papers.data_update.urllib")
