@@ -1,5 +1,7 @@
 import os
 import pickle
+import datetime
+import time
 
 from .data_update import DataUpdate
 
@@ -17,12 +19,30 @@ class Papers(list):
 
         :param force_refresh: (bool) forces a fresh download.
         """
+        
         super().__init__([])
+        
         if self.cache_exists is True and force_refresh is False:
             self._load()
+            self._checktimestamp(CACHE_PATH)
         else:
             self._get_data()
             self._save()
+            
+            
+    def _checktimestamp(self, cachepath):
+        threshold = datetime.timedelta(days=7)
+        cachetime=os.path.getmtime(self.cachepath)
+        now=self.time.time()
+        compare=datetime.timedelta(seconds=now-cachetime)
+        
+        if compare > threshold:
+            self._get_data()
+            self._save()
+
+     
+
+        
 
     def _get_data(self) -> None:
         """
