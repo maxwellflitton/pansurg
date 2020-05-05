@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pansurg",
-    version=0.1,
+    version=0.2,
     author="Maxwell Flitton",
     author_email="maxwellflitton@gmail.com",
     description="Basic pip module for accessing coronavirus resources",
