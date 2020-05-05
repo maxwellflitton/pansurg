@@ -45,7 +45,7 @@ class Papers(list):
         :return: None
         """
         with open(self.CACHE_PATH, 'wb') as handle:
-            pickle.dump(self.__dict__, handle)
+            pickle.dump(self, handle)
 
     def _load(self) -> None:
         """
@@ -53,8 +53,12 @@ class Papers(list):
 
         :return: None
         """
+        print("loading from cache...")
         with open(self.CACHE_PATH, 'rb') as handle:
-            self.__dict__ = pickle.load(handle)
+            data = pickle.load(handle)
+            for i in data:
+                self.append(i)
+        print("data loaded")
 
     @property
     def cache_exists(self) -> bool:

@@ -52,7 +52,7 @@ class TestPapers(TestCase):
         test = Papers()
 
         test._save()
-        mock_pickle.dump.assert_called_once_with(test.__dict__, mock_open.return_value.__enter__.return_value)
+        mock_pickle.dump.assert_called_once_with(test, mock_open.return_value.__enter__.return_value)
 
     @patch("pansurg.papers.papers.pickle")
     @patch("pansurg.papers.papers.open")
@@ -60,10 +60,12 @@ class TestPapers(TestCase):
     def test__load(self, mock_init, mock_open, mock_pickle):
         mock_init.return_value = None
         test = Papers()
-        mock_pickle.load.return_value = {}
+        mock_pickle.load.return_value = ["one", "two", "three"]
 
         test._load()
         mock_pickle.load.assert_called_once_with(mock_open.return_value.__enter__.return_value)
+
+        self.assertEqual(["one", "two", "three"], test)
 
 
 if __name__ == "__main__":
